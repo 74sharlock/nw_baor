@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="">
+<html lang="" xmlns="">
 <head>
   <meta charset="utf-8">
   <meta name="description" content="">
@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="/bower_components/animate.css/animate.css" />
+  <link rel="stylesheet" href="/bower_components/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -25,25 +26,34 @@
 <body>
 <div id="app" class="baor-container">
   <div class="win-ctrl-block">
-    <!--<i class="fa fa-minus no-drag" @click="minimize"></i>-->
-    <!--<i class="fa fa-clone no-drag" @click="maximize"></i>-->
+    <i class="fa fa-minus no-drag" @click="minimize"></i>
+    <i class="fa fa-clone no-drag" @click="maximize"></i>
     <i class="fa fa-remove no-drag" @click="quit"></i>
   </div>
-  <router-view></router-view>
-</div>
+  <div class="menu">
+    <ul class="list-unstyled">
+      <li v-link="{path: '/index'}"><i class="fa no-drag fa-cny"></i></li>
+      <li v-link="{path: '/member'}"><i class="fa no-drag fa-user"></i></li>
+      <li v-link="{path: '/category'}"><i class="fa no-drag fa-leaf"></i></li>
+    </ul>
+  </div>
+  <router-view class="animated" transition="fadeMove"></router-view>
 
-<!-- build:js scripts/vendor.js -->
-<!-- bower:js -->
-<script src="/bower_components/jquery/dist/jquery.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="/bower_components/littlelib/lib.js"></script>
-<script src="/bower_components/vue/dist/vue.js"></script>
-<script src="/bower_components/vue-router/dist/vue-router.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/bower_components/littlelib/lib.js"></script>
+  <script src="/bower_components/vue/dist/vue.js"></script>
+  <script src="/bower_components/vue-router/dist/vue-router.js"></script>
+  <script src="/bower_components/tether/dist/js/tether.js"></script>
+  <script src="/bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="/bower_components/smalot-bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
-<!-- build:js scripts/main.js -->
-<script src="scripts/main.js"></script>
-<!-- endbuild -->
+  <!-- build:js scripts/main.js -->
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
 </body>
 </html>

@@ -1,9 +1,21 @@
+.pointer {
+  cursor: pointer;
+}
+.datetimepicker {
+  font-size: 12px;
+}
 body {
   background-color: #2f4050;
   color: #676a6c;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   -webkit-user-select: none;
   -webkit-app-region: drag;
+  overflow: hidden;
+}
+html,
+body,
+#app {
+  height: 100%;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -29,19 +41,34 @@ body {
 }
 .btn,
 input,
-.no-drag {
+.no-drag,
+.no-drag *,
+.pointer {
   -webkit-app-region: no-drag;
 }
 .baor-container {
   width: 100%;
-  padding: 1.5rem 0 1.5rem 1.5rem;
+  padding: 1.5rem 0 1.5rem 4.5rem;
   color: white;
+  overflow: hidden;
 }
 .baor-container .price b {
   font-size: 36px;
 }
 .baor-container hr {
   border-top: 0.0625rem solid rgba(255, 255, 255, 0.1);
+}
+.baor-container .block {
+  position: absolute;
+  left: 4.5rem;
+  right: 0;
+  top: 1.5rem;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.baor-container .modal {
+  color: #333;
 }
 .price .symbol {
   font-size: 12px;
@@ -59,6 +86,7 @@ input,
   top: 0;
   padding-right: .5rem;
   color: #676a6c;
+  z-index: 9999;
 }
 .win-ctrl-block .fa {
   cursor: pointer;
@@ -68,15 +96,31 @@ input,
 .win-ctrl-block .fa:hover {
   color: white;
 }
-.card.card-black {
+.card.card-black,
+.member-block .card {
   background-color: #38393E;
   width: 15rem;
   vertical-align: top;
   display: inline-block;
-}
-.card.card-black {
   margin-right: 1.5rem;
   margin-bottom: 1.5rem;
+}
+.card.card-black .tools,
+.member-block .card .tools {
+  position: absolute;
+  background: transparent;
+  top: 0;
+  width: 100%;
+  left: 0;
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+.card.card-black .card-img-top,
+.member-block .card .card-img-top {
+  width: 100%;
+}
+.member-block .card .card-footer .form-group {
+  margin-bottom: 0;
 }
 .card.card-black .card-link {
   color: #5AABF1;
@@ -86,4 +130,65 @@ input,
 .card.card-black .card-link:hover {
   color: #84C6FF;
   text-decoration: none;
+}
+.menu {
+  position: absolute;
+  width: 3rem;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #516369;
+  display: flex;
+  align-items: center;
+}
+.menu ul {
+  margin: 0;
+  display: inline-block;
+  width: 3rem;
+}
+.menu ul li {
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  -webkit-transition: color 0.25s ease;
+  transition: color 0.25s ease;
+}
+.menu ul li.active,
+.menu ul li.active:hover {
+  background-color: #2f4050;
+}
+.menu ul li:hover {
+  background-color: #465b6f;
+}
+.block-leader {
+  margin-bottom: 1rem;
+}
+.block-leader .block-way-selector,
+.block-leader .form-group {
+  margin-right: 1rem;
+}
+.cat-block {
+  padding-top: 1rem;
+}
+.cat-block h3,
+.cat-block .add {
+  display: inline-block;
+  font-weight: normal;
+  font-size: 20px;
+  margin-right: 1rem;
+  min-width: 12rem;
+  float: left;
+}
+.cat-block .items {
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: .5rem;
+}
+.cat-block .add {
+  padding: 1px;
+  width: 12rem;
 }

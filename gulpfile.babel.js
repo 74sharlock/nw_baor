@@ -182,19 +182,21 @@ gulp.task('default', ['clean'], () => {
 gulp.task('save', ['wiredep']);
 
 
-gulp.task('cleanPacket', del.bind(null, ['D:/package.nw/**'], {force: true}));
+gulp.task('cleanPacket', del.bind(null, ['./package.nw/**'], {force: true}));
 
-gulp.task('delBuild', del.bind(null, ['D:/build/**'], {force: true}));
+gulp.task('delBuild', del.bind(null, ['./build/**'], {force: true}));
 
 gulp.task('nw-copy', ['build', 'cleanPacket', 'delBuild'], function () {
-  var distFiles = gulp.src('dist/**/*').pipe(gulp.dest('D:/package.nw/dist'));
-  var dataFile = gulp.src('data/**/*').pipe(gulp.dest('D:/package.nw/data'));
-  var configFile = gulp.src('package.json').pipe(gulp.dest('D:/package.nw/'));
+  var distFiles = gulp.src('dist/**/*').pipe(gulp.dest('./package.nw/dist'));
+  var dataFile = gulp.src('data/**/*').pipe(gulp.dest('./package.nw/data'));
+  var configFile = gulp.src('./package.json').pipe(gulp.dest('./package.nw/'));
   return mergeStream(distFiles, dataFile, configFile);
 });
 
 gulp.task('nw-build', ['nw-copy'], function () {
-  exec('nwbuild -p win64 d:/package.nw -o D:/build', function (err, stdout, stderr) {
+  let platform = gulp.env.env || 'osx64';
+  console.log(`start ${platform} builder.`);
+  exec(`nwbuild -p ${platform} ./package.nw -o ./build`, function (err, stdout, stderr) {
     if (stdout) console.log(stdout);
     if (stderr) console.log(stderr);
     if (err) {
@@ -206,7 +208,7 @@ gulp.task('nw-build', ['nw-copy'], function () {
 });
 
 gulp.task('nw-serve', ['build'], function () {
-  let command = `D:/nwjs/nw.exe D:/nw_baor`;
+  let command = `./bin/nwjs.app/Contents/MacOS/nwjs ./`;
   exec(command,function (err, stdout, stderr) {
     if (stdout) console.log(stdout);
     if (stderr) console.log(stderr);

@@ -1,41 +1,54 @@
 {
-  "2016/4/13": [
+  "2016/4/21": [
     {
-      "category" : 0,
-      "spend": 1570,
+      "category": 5,
+      "spend": 4500,
       "who": 0,
-      "time": "19:00:00",
-      "note": "for supper"
+      "note": "123",
+      "time": "16:51:21"
     },
     {
-      "category" : 2,
-      "spend": 5000,
+      "category": 1,
+      "spend": 5500,
+      "who": 0,
+      "note": "dsad",
+      "time": "17:5:21"
+    },
+    {
+      "category": 3,
+      "spend": 20000,
       "who": 1,
-      "time": "14:16:00",
-      "note": "bbbb"
+      "note": "12",
+      "time": "17:12:7"
     }
   ],
-  "2016/4/14": [
+  "2016/4/22": [
     {
-      "category" : 0,
-      "spend": 4280,
+      "category": 7,
+      "spend": 2500,
       "who": 0,
-      "time": "19:02:00",
-      "note": "supper"
-    },
+      "note": "哈哈",
+      "time": "15:6:4"
+    }
+  ],
+  "2016/4/20": [],
+  "2016/4/11": [
     {
-      "category" : 1,
-      "spend": 3277,
-      "who": 1,
-      "time": "14:02:00",
-      "note": "aaaa"
-    },
+      "who": 0,
+      "category": 1,
+      "spend": 4500,
+      "note": "555",
+      "time": "14:54:14"
+    }
+  ],
+  "2016/4/10": [],
+  "2016/4/19": [
     {
-      "category" : 4,
-      "spend": 580,
       "who": 1,
-      "time": "10:22:22",
-      "note": ""
+      "category": 1,
+      "spend": 12100,
+      "note": "33",
+      "time": "15:0:12"
     }
   ]
 }
