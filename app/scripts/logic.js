@@ -1,6 +1,7 @@
 import index from './components/index';
 import member from './components/member';
 import category from './components/category';
+import settings from './components/settings';
 import app from './app';
 import trs from './transition';
 import filter from './filter';
@@ -27,8 +28,11 @@ export default function (winObj) {
     },
     '/category': {
       component: category
+    },
+    '/settings':{
+      component: settings
     }
   });
   router.start(App, '#app');
-  router.go('/index');
+  router.go('/settings');
 }
