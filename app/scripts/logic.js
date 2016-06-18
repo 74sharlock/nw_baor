@@ -30,5 +30,5 @@ export default function (winObj) {
     }
   });
   router.start(App, '#app');
-  router.go('/category');
+  router.go('/index');
 }

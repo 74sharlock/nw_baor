@@ -57,7 +57,7 @@ export default Vue.component('member', {
       MB.save();
     }
   },
-  template: `<div class="member-block block">
+  template: `<div class="member-block block no-drag">
     <div>
       <div class="card text-center" v-for="man in allMembers">
         <img class="card-img-top" :src="man.avatar || '/dist/images/avatar.png'" alt="Card image cap">

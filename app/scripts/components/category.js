@@ -91,7 +91,7 @@ export default Vue.component('member', {
       this.$refs['modify'].showModal();
     }
   },
-  template: `<div class="cat-block block clearfix">
+  template: `<div class="cat-block block clearfix no-drag">
     <h3 v-for="cat in cats" class="items">
       <span>{{ cat.name }}</span>
       <span class="label {{cat.bg}}">{{cat.count}}</span> 

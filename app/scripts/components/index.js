@@ -150,7 +150,7 @@ export default Vue.component('index', {
       }
     }
   },
-  template: `<div class="block">
+  template: `<div class="block no-drag">
     <div class="form-inline block-leader">
       <div class="form-group block-way-selector">
         <div class="btn-group">

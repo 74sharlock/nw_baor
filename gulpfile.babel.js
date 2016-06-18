@@ -208,7 +208,7 @@ gulp.task('nw-build', ['nw-copy'], function () {
 });
 
 gulp.task('nw-serve', ['build'], function () {
-  let command = `./bin/nwjs.app/Contents/MacOS/nwjs ./`;
+  let command = `c:/nwjs/nw.exe ./`;
   exec(command,function (err, stdout, stderr) {
     if (stdout) console.log(stdout);
     if (stderr) console.log(stderr);
