@@ -1,1 +1,14 @@
 @headerHeight: 60px;
+@linkColor: #4a90e2;
+
+.boxShadow(@top, @left, @area, @red, @green, @blue, @alpha){
+  box-shadow: @top @left @area rgba(@red, @green, @blue, @alpha);
+}
+
+.boxShadowBlue(@alpha: .5){
+  .boxShadow(0, 0, 10px, 74, 144, 226, @alpha);
+}
+
+.boxShadowForBlock {
+  .boxShadow(0, 1px, 5px, 0, 0 , 0, .15);
+}

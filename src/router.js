@@ -13,7 +13,7 @@ export default function (router) {
                 linkReplace: yes,
                 priority: 0
             },
-            component: require('./components/index.vue')
+            component: require('./pages/index.vue')
         }
     });
 }

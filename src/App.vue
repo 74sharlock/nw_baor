@@ -23,6 +23,14 @@
 <style lang="less" rel="stylesheet/less">
     @import '../node_modules/font-awesome/less/font-awesome.less';
     @import 'assets/var';
+    html, body {
+        height: 100%;
+    }
+
+    #app {
+        height: 100%;
+        overflow: hidden;
+    }
 
     .animated.half {
         -webkit-animation-duration: .5s;
@@ -103,8 +111,26 @@
         right: 0;
         bottom: 0;
         top: @headerHeight;
-        &::-webkit-scrollbar {
 
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: rgba(0, 231, 255, .76);
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        }
+
+        &::-webkit-scrollbar-thumb:window-inactive {
+            background: rgba(0, 231, 255, .4);
         }
     }
 
