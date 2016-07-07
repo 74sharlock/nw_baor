@@ -1,0 +1,23 @@
+{
+  "name": "baor",
+  "version": "0.1.0",
+  "description": "for my sweet heart.",
+  "author": "74sharlock <2220106810@qq.com>",
+  "main": "background.js",
+  "dependencies": {
+    "animate.css": "^3.5.1",
+    "font-awesome": "^4.6.3",
+    "normalize.css": "^4.2.0",
+    "vue-router": "^0.7.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/74sharlock/nw_baor.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/74sharlock/nw_baor/issues"
+  },
+  "homepage": "https://github.com/74sharlock/nw_baor#readme",
+  "devDependencies": {}
+}
