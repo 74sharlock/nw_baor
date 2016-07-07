@@ -1,0 +1,130 @@
+<template>
+    <div id="app">
+        <x-aside></x-aside>
+        <router-view class="animated half" transition="fadeSlide" transition-mode="out-in"></router-view>
+    </div>
+</template>
+
+<script>
+    import xAside from 'components/aside'
+
+    export default {
+        components: {
+            xAside
+        }
+    }
+</script>
+
+<style lang="less" rel="stylesheet/less">
+    @import './node_modules/animate.css/animate.css';
+    @import './node_modules/normalize.css/normalize.css';
+    @import './node_modules/font-awesome/less/font-awesome.less';
+    @import 'assets/var';
+    html, body {
+        height: 100%;
+    }
+
+    #app {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .animated.half {
+        -webkit-animation-duration: .5s;
+        animation-duration: .5s;
+        &.and-half {
+            -webkit-animation-duration: .25s;
+            animation-duration: .25s;
+        }
+    }
+
+    .sign.arrow {
+        position: relative;
+    }
+
+    .sign.arrow::after {
+        content: " ";
+        display: inline-block;
+        height: 6px;
+        width: 6px;
+        border-width: 1.5px 1.5px 0 0;
+        border-color: currentColor;
+        border-style: solid;
+        position: absolute;
+        transition: all .5s;
+    }
+
+    .sign.arrow.right::after {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        right: 15px;
+        top: 50%;
+        margin-top: -4px;
+    }
+
+    .sign.arrow.bottom::after {
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+        right: 15px;
+        top: 50%;
+        margin-top: -6px;
+    }
+
+    .sign.arrow.top::after {
+        -webkit-transform: rotate(315deg);
+        transform: rotate(315deg);
+        right: 15px;
+        top: 50%;
+        margin-top: -4px;
+    }
+    .sign.clock {
+        display: block;
+        position: relative;
+        border-radius: 50%;
+        color: #000;
+        border: 1px solid currentColor;
+        width: 18px;
+        height: 18px;
+        &::after {
+            content: " ";
+            display: inline-block;
+            height: 6px;
+            width: 4px;
+            border-width: 0 0 1.5px 1.5px;
+            border-color: currentColor;
+            border-style: solid;
+            position: absolute;
+            transition: all .5s;
+        }
+        &.three::after {
+            left: ~'calc(50% - 1px)';
+            top: 2px;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: rgba(0, 231, 255, .76);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(0, 231, 255, .4);
+    }
+
+
+</style>
