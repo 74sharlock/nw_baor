@@ -7,7 +7,7 @@
         props: ['name', 'type', 'size'],
         data () {
             return {
-                
+
             }
         },
         computed: {

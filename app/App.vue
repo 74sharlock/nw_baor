@@ -1,16 +1,21 @@
 <template>
     <div id="app">
-        <x-aside></x-aside>
-        <router-view class="animated half" transition="fadeSlide" transition-mode="out-in"></router-view>
+        <common-header></common-header>
+        <div class="container">
+            <x-aside class="no-drag"></x-aside>
+            <router-view class="animated half" transition="fadeSlide" transition-mode="out-in"></router-view>
+        </div>
     </div>
 </template>
 
 <script>
     import xAside from 'components/aside'
+    import CommonHeader from 'components/header'
 
     export default {
         components: {
-            xAside
+            xAside,
+            CommonHeader
         }
     }
 </script>
@@ -20,8 +25,27 @@
     @import './node_modules/normalize.css/normalize.css';
     @import './node_modules/font-awesome/less/font-awesome.less';
     @import 'assets/var';
+
+    html {
+        font-size: 10px;
+        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+        color: #4d494d;
+    }
+
     html, body {
         height: 100%;
+    }
+
+    .no-drag {
+        -webkit-app-region: no-drag;
+    }
+
+    .darg {
+        -webkit-app-region: drag;
+    }
+
+    body {
+        font-size: 1.4rem;
     }
 
     #app {
@@ -29,7 +53,17 @@
         overflow: hidden;
         display: flex;
         width: 100%;
+        flex-direction: column;
         align-items: stretch;
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            height: 100%;
+            align-items: stretch;
+            padding-bottom: 30px;
+        }
     }
 
     .animated.half {

@@ -12,7 +12,7 @@ export default function (router) {
                 linkReplace: yes,
                 priority: 0
             },
-            component: require('./pages/index.vue')
+            component: require('./components/pages/index.vue')
         },
         '/category': {
             pageData: {
@@ -23,7 +23,7 @@ export default function (router) {
                 linkReplace: yes,
                 priority: 0
             },
-            component: require('./pages/category.vue')
+            component: require('./components/pages/category.vue')
         },
         '/member': {
             pageData: {
@@ -34,7 +34,7 @@ export default function (router) {
                 linkReplace: yes,
                 priority: 0
             },
-            component: require('./pages/member.vue')
+            component: require('./components/pages/member.vue')
         },
         '/analysis': {
             pageData: {
@@ -45,7 +45,7 @@ export default function (router) {
                 linkReplace: yes,
                 priority: 0
             },
-            component: require('./pages/analysis.vue')
+            component: require('./components/pages/analysis.vue')
         },
         '/settings': {
             pageData: {
@@ -56,7 +56,7 @@ export default function (router) {
                 linkReplace: yes,
                 priority: 0
             },
-            component: require('./pages/settings.vue')
+            component: require('./components/pages/settings.vue')
         }
     });
 }
