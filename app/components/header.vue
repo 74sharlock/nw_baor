@@ -1,15 +1,16 @@
 <template>
     <header class="drag">
         <div class="handle no-drag">
-            <span class="remove"><icon name="remove"></icon></span>
-            <span class="minus"><icon name="minus"></icon></span>
-            <span class="plus"><icon name="plus"></icon></span>
+            <span class="remove" @click="closeWin"><icon name="remove"></icon></span>
+            <span class="minus" @click="minWin"><icon name="minus"></icon></span>
+            <span class="plus" @click="maxWin"><icon name="plus"></icon></span>
         </div>
 
         <div v-if="$route.pageData.modelName === 'home'" class="no-drag dateDisplay">
             <btn-group>
                 <btn>年</btn>
                 <btn>月</btn>
+                <btn @click="s">s</btn>
             </btn-group>
         </div>
 
@@ -80,6 +81,20 @@
         data () {
             return {
                 
+            }
+        },
+        methods:{
+            s(){
+                this.$ipcRenderer.send('toggleDevTools');
+            },
+            closeWin(){
+                this.$ipcRenderer.send('close');
+            },
+            minWin(){
+                this.$ipcRenderer.send('minimize');
+            },
+            maxWin(){
+                this.$ipcRenderer.send('maximize');
             }
         },
         components: {

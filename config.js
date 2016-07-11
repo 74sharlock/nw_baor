@@ -11,7 +11,7 @@ module.exports = {
   build: {
     // The directory which will contained packaged releases and installers
     // for various operation systems.
-    releasesRoot: path.resolve(__dirname, 'releases'),
+    releasesRoot: path.resolve(__dirname, '../releases'),
 
     // The target directory for your app's compiled assets. Must be an absolute path.
     // This is the directory which will contain a runnable electron app.

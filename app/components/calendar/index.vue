@@ -3,14 +3,18 @@
         <slot name="header">
             <div class="header">
                 <div class="month">{{dater.year}}年{{dater.month}}月</div>
-                <div class="handle"></div>
+                <div class="handle">
+                    <btn @click="showCalendar(handleMonth('prev', n(dater.year), n(dater.month)))"><</btn>
+                    <btn @click="showCalendar(today)">今天</btn>
+                    <btn @click="showCalendar(handleMonth('next', n(dater.year), n(dater.month)))">></btn>
+                </div>
             </div>
         </slot>
         <div class="days">
             <div class="item" v-for="item in days">周{{item}}</div>
         </div>
         <div class="dates">
-            <div class="item {{item.state}} {{item.name}}" v-for="item in monthPanel" track-by="$index" data-value="{{item.value}}">
+            <div class="item {{item.state}} {{item.name}}" v-for="item in dater.getMonthPanel()" track-by="$index" data-value="{{item.value}}">
                 <div class="body">
                     <div class="date">{{item.day}}日</div>
                 </div>
@@ -34,7 +38,12 @@
                 padding: 20px;
             }
             .handle {
-
+                display: flex;
+                justify-content: space-around;
+                padding-right: 20px;
+                .btn + .btn {
+                    margin-left: 5px;
+                }
             }
         }
         .days {
@@ -90,26 +99,46 @@
 
 </style>
 <script type="text/babel">
-    import GregorianCalendar from 'gregorian-calendar';
-    import calendarZh_CN from 'gregorian-calendar/lib/locale/zh_CN';
-
+    import btn from 'components/btn'
     import Calendar from './calendar';
+
+    let calendar = new Calendar(1462809600000);
 
     export default {
         data () {
             return {
-                dateTime: Date.now(),
+                today: 1451577600000,
+                dateTime: 1451577600000,
                 days: ['一', '二', '三', '四', '五', '六', '日']
             }
         },
-        computed: {
-            dater (){
-                return new Calendar(this.dateTime);
+        methods:{
+            n(e){
+                let result = parseInt(e, 10);
+                return isNaN(result) ? e : result;
             },
-            monthPanel(){
-                return this.dater.getMonthPanel();
+            showCalendar(date){
+                console.log(date);
+                this.dateTime = new Date(date).getTime();
+            },
+            handleMonth(d, y, m){
+                return ({
+                    prev(){
+                        return m === 1 ? `${y-1}/12/2` : `${y}/${m-1}/2`;
+                    },
+                    next(){
+                        return m === 12 ? `${y+1}/1/2` : `${y}/${m+1}/2`;
+                    }
+                })[d]();
             }
         },
-        components: {}
+        computed: {
+            dater(){
+                return calendar.setTime(this.dateTime);
+            }
+        },
+        components: {
+            btn
+        }
     }
 </script>

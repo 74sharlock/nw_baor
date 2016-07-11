@@ -40,7 +40,7 @@
         -webkit-app-region: no-drag;
     }
 
-    .darg {
+    .drag {
         -webkit-app-region: drag;
     }
 

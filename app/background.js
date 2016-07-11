@@ -3,8 +3,9 @@
 // It doesn't have any windows which you can see on screen, but we can open
 // window from here.
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'path'
+import ipc from './ipc'
 
 let mainWindow
 
@@ -14,6 +15,10 @@ app.on('ready', () => {
     height: 768,
     frame: false
   })
+
+  const wc = mainWindow.webContents;
+
+  ipc.call(ipcMain, {app, mainWindow});
 
   // Load the HTML file directly from the webpack dev server if
   // hot reload is enabled, otherwise load the local file.
@@ -27,11 +32,14 @@ app.on('ready', () => {
     mainWindow.openDevTools()
   }
 
+
+
   mainWindow.on('closed', () => {
     mainWindow = null
-  })
-})
+  });
+
+});
 
 app.on('window-all-closed', () => {
   app.quit()
-})
+});
