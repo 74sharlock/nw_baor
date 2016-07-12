@@ -10,16 +10,18 @@
             <btn-group>
                 <btn>年</btn>
                 <btn>月</btn>
+                <!--todo: 必须删掉这个临时按钮-->
                 <btn @click="s">s</btn>
             </btn-group>
         </div>
-
-        <div class="toggleBtn no-drag"><icon name="bars"></icon></div>
+        <div class="backBtn no-drag" v-show="$route.pageData.needBack" @click="resolveBack"><btn>返回</btn></div>
+        <div class="toggleBtn no-drag" v-show="$route.pageData.needMenu"><icon name="bars"></icon></div>
     </header>
 </template>
 <style lang="less" rel="stylesheet/less">
     header {
         width: 100%;
+        height: 46px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -78,12 +80,8 @@
     import btnGroup from 'components/btn-group'
 
     export default {
-        data () {
-            return {
-                
-            }
-        },
         methods:{
+            //todo: 必须删掉这个临时方法
             s(){
                 this.$ipcRenderer.send('toggleDevTools');
             },
@@ -95,6 +93,9 @@
             },
             maxWin(){
                 this.$ipcRenderer.send('maximize');
+            },
+            resolveBack(){
+                this.$router.replace(this.$route.pageData.backTo || '/');
             }
         },
         components: {

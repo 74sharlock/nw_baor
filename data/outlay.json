@@ -1,59 +1,58 @@
 {
-  "2016/4/21": [
+  "1468252800000": [
     {
-      "category": 5,
-      "spend": 4500,
-      "who": 0,
-      "note": "123",
-      "time": "16:51:21"
+      "member": 0,
+      "category": 0,
+      "spend": 12.5,
+      "note": ""
     },
     {
-      "category": 1,
-      "spend": 5500,
-      "who": 0,
-      "note": "dsad",
-      "time": "17:5:21"
+      "member": 0,
+      "category": 2,
+      "spend": 22,
+      "note": ""
     },
     {
-      "category": 3,
-      "spend": 20000,
-      "who": 1,
-      "note": "12",
-      "time": "17:12:7"
-    }
-  ],
-  "2016/4/22": [
+      "member": 1,
+      "category": 6,
+      "spend": 78,
+      "note": ""
+    },
     {
-      "category": 7,
-      "spend": 2500,
-      "who": 0,
-      "note": "哈哈",
-      "time": "15:6:4"
-    }
-  ],
-  "2016/4/20": [],
-  "2016/4/11": [
+      "member": 0,
+      "category": 0,
+      "spend": 12.5,
+      "note": ""
+    },
     {
-      "who": 0,
-      "category": 1,
-      "spend": 4500,
-      "note": "555",
-      "time": "14:54:14"
-    }
-  ],
-  "2016/4/10": [],
-  "2016/4/19": [
+      "member": 0,
+      "category": 2,
+      "spend": 22,
+      "note": ""
+    },
     {
-      "who": 1,
-      "category": 1,
-      "spend": 12100,
-      "note": "33",
-      "time": "15:0:12"
+      "member": 1,
+      "category": 6,
+      "spend": 78,
+      "note": ""
+    },
+    {
+      "member": 0,
+      "category": 0,
+      "spend": 12.5,
+      "note": ""
+    },
+    {
+      "member": 0,
+      "category": 2,
+      "spend": 22,
+      "note": ""
+    },
+    {
+      "member": 1,
+      "category": 6,
+      "spend": 78,
+      "note": ""
     }
-  ],
-  "2016/4/27": [],
-  "2016/5/20": [],
-  "2016/5/26": [],
-  "2016/5/21": [],
-  "ss": 1212
+  ]
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <calendar></calendar>
+        <calendar :item-component="$options.components.todayOutlay" @item-click="go"></calendar>
     </div>
 </template>
 <style lang="less" rel="stylesheet/less" scoped>
@@ -10,17 +10,22 @@
     }
 </style>
 <script type="text/babel">
-    import outlay from 'data/outlay.json';
     import calendar from '../calendar/'
+    import todayOutlay from '../today-outlay'
 
     export default {
         data () {
             return {
-
+            }
+        },
+        methods:{
+            go(date){
+                this.$router.go(`/detail/${new Date(date).getTime()}`);
             }
         },
         components: {
-            calendar
+            calendar,
+            todayOutlay
         }
     }
 </script>

@@ -34,6 +34,7 @@
 
     html, body {
         height: 100%;
+        background-color: #fff;
     }
 
     .no-drag {
@@ -67,8 +68,8 @@
     }
 
     .animated.half {
-        -webkit-animation-duration: .5s;
-        animation-duration: .5s;
+        -webkit-animation-duration: .25s;
+        animation-duration: .25s;
         &.and-half {
             -webkit-animation-duration: .25s;
             animation-duration: .25s;

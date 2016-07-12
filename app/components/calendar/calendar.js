@@ -24,29 +24,37 @@ export default class Calendar {
         let days = this.monthDays[this.dater.getMonth()],
             dayOfTheFirst = new Date(`${this.year}/${this.month}/1`).getDay(), //每月第一天是星期几
             i = 1,
-            l = dayOfTheFirst === 1 ? 7 : dayOfTheFirst - 1,
+            l = dayOfTheFirst === 0 ? 6 : dayOfTheFirst - 1,
             prevMonth = this.dater.getMonth() === 0 ? 11 : this.dater.getMonth() - 1,
             prevYear = this.dater.getMonth() === 0 ? Number(this.year) - 1 : this.year,
             nextYear = this.dater.getMonth() === 11 ? Number(this.year) + 1 : this.year,
             prevDay = this.monthDays[prevMonth],
             arr = [];
 
-
         while(arr.length < 42){
             if(l){
                 l--;
-                arr.unshift({state:'prevMonth', day: zeroFormat(prevDay), value: `${prevYear}/${zeroFormat(prevMonth + 1)}/${zeroFormat(prevDay)}`, name: ''});
-                console.log(prevDay, zeroFormat(prevDay));
+                let thatDay = `${prevYear}/${zeroFormat(prevMonth + 1)}/${zeroFormat(prevDay)}`
+                arr.unshift({
+                    state:'prevMonth', 
+                    day: zeroFormat(prevDay), 
+                    value: thatDay, 
+                    timeStamp: new Date(thatDay).getTime(),
+                    name: ''
+                });
                 prevDay --;
             } else {
+                let thatDay = i > days ? `${nextYear}/${zeroFormat(Number(this.month) === 12 ? 1 : Number(this.month) + 1)}/${zeroFormat((i - days))}` : `${this.year}/${zeroFormat(this.month)}/${zeroFormat(i)}`;
                 arr.push(i > days ? {
                     state:'nextMonth',
                     day: zeroFormat((i - days)),
-                    value: `${nextYear}/${zeroFormat(Number(this.month) === 12 ? 1 : Number(this.month) + 1)}/${zeroFormat((i - days))}`,
+                    value: thatDay,
+                    timeStamp: new Date(thatDay).getTime(),
                     name: ''} : {
                     state:'thisMonth',
                     day: zeroFormat(i),
-                    value: `${this.year}/${zeroFormat(this.month)}/${zeroFormat(i)}`,
+                    value: thatDay,
+                    timeStamp: new Date(thatDay).getTime(),
                     name: (function () {
                         let name = '';
                         if(this.year == new Date().getFullYear() && this.month == new Date().getMonth() + 1){

@@ -8,11 +8,20 @@ export default function (router) {
                 modelName: 'home',
                 pageTitle: '首页',
                 needBack: no,
-                needMenu: no,
-                linkReplace: yes,
+                needMenu: yes,
                 priority: 0
             },
             component: require('./components/pages/index.vue')
+        },
+        '/detail/:date':{
+            pageData: {
+                modelName: 'detail',
+                pageTitle: '明细',
+                needBack: yes,
+                needMenu: no,
+                priority: 2
+            },
+            component: require('./components/pages/detail.vue')
         },
         '/category': {
             pageData: {
@@ -21,7 +30,7 @@ export default function (router) {
                 needBack: no,
                 needMenu: no,
                 linkReplace: yes,
-                priority: 0
+                priority: 1
             },
             component: require('./components/pages/category.vue')
         },
@@ -32,7 +41,7 @@ export default function (router) {
                 needBack: no,
                 needMenu: no,
                 linkReplace: yes,
-                priority: 0
+                priority: 1
             },
             component: require('./components/pages/member.vue')
         },
@@ -43,7 +52,7 @@ export default function (router) {
                 needBack: no,
                 needMenu: no,
                 linkReplace: yes,
-                priority: 0
+                priority: 1
             },
             component: require('./components/pages/analysis.vue')
         },
@@ -54,7 +63,7 @@ export default function (router) {
                 needBack: no,
                 needMenu: no,
                 linkReplace: yes,
-                priority: 0
+                priority: 1
             },
             component: require('./components/pages/settings.vue')
         }

@@ -22,7 +22,6 @@ router.start(App, '#root');
 let leaveClass = '';
 let enterClass = '';
 
-
 Vue.transition('fadeSlide', {
 
     beforeEnter (el) {

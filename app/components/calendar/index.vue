@@ -14,15 +14,17 @@
             <div class="item" v-for="item in days">周{{item}}</div>
         </div>
         <div class="dates">
-            <div class="item {{item.state}} {{item.name}}" v-for="item in dater.getMonthPanel()" track-by="$index" data-value="{{item.value}}">
+            <div class="item {{item.state}} {{item.name}}" v-for="item in dater.getMonthPanel()" track-by="$index" data-value="{{item.value}}" @click="$dispatch('item-click', item.value)">
                 <div class="body">
                     <div class="date">{{item.day}}日</div>
+                    <div class="data-item" v-if="dataHandler(item.value)">{{dataHandler(item.value)}}</div>
+                    <component :is="itemComponent" :date="item"></component>
                 </div>
             </div>
         </div>
     </div>
 </template>
-<style lang="less" rel="stylesheet/less" scoped>
+<style lang="less" rel="stylesheet/less">
     .calendar {
         width: 100%;
         height: 100%;
@@ -77,6 +79,11 @@
                 .body {
                     border-top: 2px solid #eee;
                     width: 100%;
+                    align-self: stretch;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    display: flex;
+                    flex-direction: column;
 
                     .date {
                         width: 100%;
@@ -102,13 +109,22 @@
     import btn from 'components/btn'
     import Calendar from './calendar';
 
-    let calendar = new Calendar(1462809600000);
+    let calendar = new Calendar(Date.now());
 
     export default {
+        props:{
+            data: {},
+            dataHandler: {
+                type: Function,
+                default: function () {
+                }
+            },
+            itemComponent: {}
+        },
         data () {
             return {
-                today: 1451577600000,
-                dateTime: 1451577600000,
+                today: Date.now(),
+                dateTime: Date.now(),
                 days: ['一', '二', '三', '四', '五', '六', '日']
             }
         },
@@ -118,7 +134,6 @@
                 return isNaN(result) ? e : result;
             },
             showCalendar(date){
-                console.log(date);
                 this.dateTime = new Date(date).getTime();
             },
             handleMonth(d, y, m){

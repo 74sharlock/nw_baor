@@ -3,9 +3,7 @@
 </template>
 <style lang="less" rel="stylesheet/less">
     .btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: inline-block;
         background-color: #fff;
         border-radius: 4px;
         padding: 3px 12px;
