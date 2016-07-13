@@ -22,7 +22,7 @@ module.exports = {
     assetsSubDirectory: 'assets',
 
     // Whether to generate source maps for production builds.
-    productionSourceMap: true
+    productionSourceMap: false
   },
   release: {
     // The Electron version to use for packaged releases. If blank, it defaults

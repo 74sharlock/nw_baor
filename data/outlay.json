@@ -53,6 +53,12 @@
       "category": 6,
       "spend": "1888",
       "note": "212121"
+    },
+    {
+      "member": 0,
+      "category": 10,
+      "spend": "-15000",
+      "note": ""
     }
   ]
 }

@@ -4,9 +4,9 @@
             <div class="header">
                 <div class="month">{{dater.year}}年{{dater.month}}月<span v-if="dataMonthHandler()">{{{dataMonthHandler(firstDayOfMonth, LastDayOfMonth)}}}</span></div>
                 <div class="handle">
-                    <btn @click="showCalendar(handleMonth('prev', n(dater.year), n(dater.month)))"><</btn>
-                    <btn @click="showCalendar(today)">今天</btn>
-                    <btn @click="showCalendar(handleMonth('next', n(dater.year), n(dater.month)))">></btn>
+                    <a class="btn" @click="showCalendar(handleMonth('prev', n(dater.year), n(dater.month)))"><</a>
+                    <a class="btn" @click="showCalendar(today)">今天</a>
+                    <a class="btn" @click="showCalendar(handleMonth('next', n(dater.year), n(dater.month)))">></a>
                 </div>
             </div>
         </slot>

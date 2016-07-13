@@ -6,7 +6,6 @@ export default {
         
         vue.prototype.$getTotal = function (arr, key) {
             if(arr && arr.length){
-                console.log(this.$getType(key));
                 return arr.reduce((x, y) => {
                     if(this.$getType(key) === 'string'){
                         return (Number(x[key]) || Number(x)) + Number(y[key]);
@@ -15,6 +14,6 @@ export default {
                 });
             }
             return 0
-        };
+        }; 
     }    
 };

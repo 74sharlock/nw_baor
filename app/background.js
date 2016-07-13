@@ -29,9 +29,11 @@ app.on('ready', () => {
 
   mainWindow.loadURL(mainURL)
 
-  if (process.env.NODE_ENV !== 'production') {
+  /*if (process.env.NODE_ENV !== 'production') {
     mainWindow.openDevTools()
-  }
+  }*/
+
+  mainWindow.openDevTools()
 
 
 

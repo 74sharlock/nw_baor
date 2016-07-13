@@ -242,9 +242,7 @@
                 ws.end();
             },
             add(){
-
                 this.list.push(this.newData);
-                console.log(JSON.stringify(this.newData, null, 2));
                 this.newData = {
                     member: 0,
                     category: 0,
@@ -252,7 +250,7 @@
                     note: '',
                     modify: false
                 };
-                //this.saveData();
+                this.saveData();
             },
             update(index){
                 if(!this.list[index].modify){
