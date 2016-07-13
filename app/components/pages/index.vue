@@ -30,7 +30,8 @@
                     !(key < start || key > end) && arr.push(this.$getTotal(outlay[key], 'spend'));
                 });
                 total = this.$getTotal(arr);
-                return `<span style="font-size: 16px;color: crimson;">${total > 0 ? '支出': '收入'}了${this.$abs(total)}</span>`;
+                console.log(this.$filter, this.filter, this);
+                return `<span style="font-size: 24px;padding: 0 10px;">{ ${total > 0 ? '支出': '收入'}了<em style="color: crimson;">${this.$abs(total)}</em> }</span>`;
             }
         },
         components: {
