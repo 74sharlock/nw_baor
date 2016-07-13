@@ -22,7 +22,7 @@
                     <div class="spend">
                         <span v-if="!item.modify">
                             <em class="title">{{item.spend > 0 ? '支出' : '收入'}}了</em>
-                            <em class="price">{{item.spend | currency '¥'}}</em>
+                            <em class="price">{{$abs(item.spend) | currency '¥'}}</em>
                         </span>
                         <div v-else class="form-group">
                             <input type="text" v-model="item.spend">
@@ -34,13 +34,40 @@
                             <input type="text" v-model="item.note">
                         </div>
                     </div>
-                    <div class="control"><i class="fa fa-pencil" @click="update($index)" :class="{modify: item.modify}"></i><i class="fa fa-remove" @click="del($index)"></i></div>
+                    <div class="control"><i class="fa fa-pencil" @click="update($index)" :class="{modify: item.modify}"></i><i class="fa" :class="{'fa-trash': !item.modify, 'fa-remove': item.modify}" @click="del($index)"></i></div>
                     <div v-if="item.modify" class="save"><btn @click="save($index)">保存</btn></div>
                 </div>
 
             </div>
-            <div class="item">
-                <div class="block"></div>
+            <div class="item add">
+                <div class="block">
+                    <div class="new-title">新增</div>
+                    <div class="member">
+                        <div class="form-group">
+                            <select v-model="newData.member">
+                                <option v-for="m in member" :value="$index">{{m.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cat">
+                        <div class="form-group">
+                            <select v-model="newData.category">
+                                <option v-for="c in cat" :value="$index">{{c}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="spend">
+                        <div class="form-group">
+                            <input type="text" v-model="newData.spend">
+                        </div>
+                    </div>
+                    <div class="note">
+                        <div class="form-group">
+                            <input type="text" v-model="newData.note">
+                        </div>
+                    </div>
+                    <div class="save"><btn @click="add"><icon name="plus"></icon></btn></div>
+                </div>
             </div>
         </div>
     </div>
@@ -110,8 +137,11 @@
                             border-radius: 50%;
                             cursor: pointer;
                             font-size: 12px;
-                            &.fa-remove {
+                            &.fa-trash {
                                 background-color: #d4d4d6;
+                            }
+                            &.fa-remove {
+                                background-color: #333;
                             }
                             &.fa-pencil {
                                 background: #ffd7d7;
@@ -123,6 +153,8 @@
                     }
                     .note {
                         padding-bottom: 10px;
+                        text-align: center;
+                        color: #999;
                     }
                     .form-group {
                         padding: 0 10px;
@@ -133,6 +165,15 @@
                     .save {
                         padding-bottom: 10px;
                         text-align: center;
+                    }
+                }
+                &.add {
+                    .new-title {
+                        text-align: center;
+                        padding: 10px 0 10px;
+                    }
+                    .member {
+                        padding-top: 0;
                     }
                 }
             }
@@ -152,16 +193,23 @@
             let date = this.$route.params.date;
             return {
                 list: (function (date) {
-                    outlay[date] && outlay[date].forEach((item)=>{
-                        item.modify = false;
+                    var arr = [];
+                    outlay[date] && outlay[date].forEach((item, index)=>{
+                        arr[index] = item;
+                        arr[index].modify = false;
                     });
-                    return outlay[date];
+                    return arr;
                 })(date),
                 member,
                 cat,
-                spend: null,
-                note: '',
-                cacheData: {}
+                cacheData: {},
+                newData: {
+                    member: 0,
+                    category: 0,
+                    spend: null,
+                    note: '',
+                    modify: false
+                }
             }
         },
         components:{
@@ -176,30 +224,62 @@
                 return member[index].name;
             },
             save(index){
-                this.list[index].modify && (this.list[index].modify = false);
+                if(this.list[index].modify){
+                    this.list[index].modify = false;
+                    this.saveData();
+                }
             },
             saveData(){
+                outlay[this.$route.params.date] = [];
+                this.list.forEach((item, index) => {
+                    outlay[this.$route.params.date][index] = {};
+                    Object.keys(item).forEach((key)=>{
+                        key !== 'modify' && (outlay[this.$route.params.date][index][key] = item[key]);
+                    });
+                });
                 let ws = fs.createWriteStream(`${this.$Path.dataPath}/outlay.json`, 'utf8');
-                outlay[this.$route.params.date] = (function (arr) {
-                    arr.forEach((item)=>{
-                        delete item.modify;
-                    })
-                })(this.list);
                 ws.write(JSON.stringify(outlay, null, 2));
                 ws.end();
             },
             add(){
 
+                this.list.push(this.newData);
+                console.log(JSON.stringify(this.newData, null, 2));
+                this.newData = {
+                    member: 0,
+                    category: 0,
+                    spend: null,
+                    note: '',
+                    modify: false
+                };
+                //this.saveData();
             },
             update(index){
                 if(!this.list[index].modify){
                     this.list[index].modify = true;
-                    this.cacheData = Object.assign(this.list[index], this.cacheData);
+                    Object.keys(this.list[index]).forEach((key)=>{
+                        this.cacheData[key] = this.list[index][key];
+                    });
                 }
             },
-            del(){
-
+            del(index){
+                if(this.list[index].modify){
+                    Object.keys(this.cacheData).forEach((key)=>{
+                        this.list[index][key] = this.cacheData[key];
+                    });
+                    this.list[index].modify = false;
+                    this.cacheData = {};
+                } else {
+                    let result = this.$dialog.show({
+                        type: 'question',
+                        buttons: ['取消', '确定'],
+                        title: '提示',
+                        message: '确定要删除这条数据吗?'
+                    });
+                    result == 1 && this.list.splice(index, 1) && this.saveData();
+                }
             }
         }
+
     }
 </script>

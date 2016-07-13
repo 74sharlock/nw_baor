@@ -10,6 +10,7 @@ import ipc from './ipc'
 let mainWindow
 
 app.on('ready', () => {
+  //1300*1120
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,

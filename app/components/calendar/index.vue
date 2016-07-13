@@ -2,7 +2,7 @@
     <div class="calendar">
         <slot name="header">
             <div class="header">
-                <div class="month">{{dater.year}}年{{dater.month}}月</div>
+                <div class="month">{{dater.year}}年{{dater.month}}月<span v-if="dataMonthHandler()">{{dataMonthHandler(firstDayOfMonth, LastDayOfMonth)}}</span></div>
                 <div class="handle">
                     <btn @click="showCalendar(handleMonth('prev', n(dater.year), n(dater.month)))"><</btn>
                     <btn @click="showCalendar(today)">今天</btn>
@@ -111,13 +111,18 @@
 
     let calendar = new Calendar(Date.now());
 
+    let noop = function () {};
+
     export default {
         props:{
             data: {},
             dataHandler: {
                 type: Function,
-                default: function () {
-                }
+                default: noop
+            },
+            dataMonthHandler: {
+                type: Function,
+                default: noop
             },
             itemComponent: {}
         },
@@ -150,6 +155,12 @@
         computed: {
             dater(){
                 return calendar.setTime(this.dateTime);
+            },
+            firstDayOfMonth(){
+                return new Date(`${this.dater.year}/${this.dater.month}/01`).getTime();
+            },
+            LastDayOfMonth(){
+                return new Date(`${this.dater.year}/${this.dater.month}/${this.dater.days}`).getTime();
             }
         },
         components: {

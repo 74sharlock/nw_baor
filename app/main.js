@@ -3,9 +3,11 @@ import VueRouter from 'vue-router'
 import App from './App'
 import routerMap from './router'
 import VueElectron from './plugin/electron'
+import common from './plugin/common'
 
 Vue.use(VueRouter);
 Vue.use(VueElectron);
+Vue.use(common);
 
 
 const router = new VueRouter({

@@ -34,7 +34,7 @@ export default class Calendar {
         while(arr.length < 42){
             if(l){
                 l--;
-                let thatDay = `${prevYear}/${zeroFormat(prevMonth + 1)}/${zeroFormat(prevDay)}`
+                let thatDay = `${prevYear}/${zeroFormat(prevMonth + 1)}/${zeroFormat(prevDay)}`;
                 arr.unshift({
                     state:'prevMonth', 
                     day: zeroFormat(prevDay), 

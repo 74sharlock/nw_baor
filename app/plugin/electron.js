@@ -14,6 +14,9 @@ export default {
             workPath,
             appPath,
             dataPath
-        }
+        };
+
+        vue.prototype.$dialog = electron.remote.dialog;
+        vue.prototype.$dialog.show = vue.prototype.$dialog.showMessageBox;
     }
 }

@@ -49,10 +49,10 @@
       "note": ""
     },
     {
-      "member": 1,
+      "member": 0,
       "category": 6,
-      "spend": 78,
-      "note": ""
+      "spend": "1888",
+      "note": "212121"
     }
   ]
 }
