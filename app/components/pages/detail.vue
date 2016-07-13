@@ -126,24 +126,8 @@
                     }
                     .form-group {
                         padding: 0 10px;
-                        input {
-                            width: 100%;
-                            background: none;
-                            border: 1px solid #dfdfdf;
-                            padding: 5px 10px;
-                            font-size: 14px;
-                            border-radius: 4px;
-                            outline: none;
-                        }
-                        select {
-                            width: 100%;
-                            padding: 5px 15px 5px 10px;
-                            border-radius: 4px;
-                            margin: 0;
-                            -webkit-appearance:none;
-                            background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
-                            outline: none;
-                            font-size: 14px;
+                        input, select {
+                            color: #666;
                         }
                     }
                     .save {
@@ -210,6 +194,7 @@
             update(index){
                 if(!this.list[index].modify){
                     this.list[index].modify = true;
+                    this.cacheData = Object.assign(this.list[index], this.cacheData);
                 }
             },
             del(){

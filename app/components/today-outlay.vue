@@ -43,7 +43,7 @@
 </style>
 <script type="text/babel">
     import outlay from 'data/outlay.json';
-    console.log(Object.keys(outlay));
+
     export default {
         props:['date'],
         data () {

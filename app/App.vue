@@ -49,6 +49,30 @@
         font-size: 1.4rem;
     }
 
+    .form-group {
+
+        input {
+            width: 100%;
+            background: none;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            outline: none;
+        }
+        select {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 5px 15px 5px 10px;
+            border-radius: 4px;
+            margin: 0;
+            -webkit-appearance:none;
+            background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+            outline: none;
+            font-size: 14px;
+        }
+    }
+
     #app {
         height: 100%;
         overflow: hidden;
