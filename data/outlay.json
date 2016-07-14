@@ -19,7 +19,7 @@
       "note": ""
     },
     {
-      "member": 0,
+      "member": 1,
       "category": 0,
       "spend": 12.5,
       "note": ""
@@ -37,13 +37,13 @@
       "note": ""
     },
     {
-      "member": 0,
+      "member": 1,
       "category": 0,
       "spend": 12.5,
       "note": ""
     },
     {
-      "member": 0,
+      "member": 1,
       "category": 2,
       "spend": 22,
       "note": ""
@@ -56,9 +56,23 @@
     },
     {
       "member": 0,
-      "category": 10,
-      "spend": "-15000",
+      "category": 12,
+      "spend": "-20",
       "note": ""
+    }
+  ],
+  "1468166400000": [
+    {
+      "member": 0,
+      "category": 1,
+      "spend": "6.2",
+      "note": "早餐"
+    },
+    {
+      "member": 0,
+      "category": 1,
+      "spend": "15",
+      "note": "午饭"
     }
   ]
 }

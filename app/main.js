@@ -4,10 +4,15 @@ import App from './App'
 import routerMap from './router'
 import VueElectron from './plugin/electron'
 import common from './plugin/common'
+import filters from './filter'
 
 Vue.use(VueRouter);
 Vue.use(VueElectron);
 Vue.use(common);
+
+Object.keys(filters).forEach((key)=>{
+    Vue.filter(key, filters[key]);
+});
 
 
 const router = new VueRouter({
@@ -18,7 +23,7 @@ const router = new VueRouter({
 
 routerMap(router);
 
-router.start(App, '#root');
+router.start(App, '#root'); 
 
 
 let leaveClass = '';

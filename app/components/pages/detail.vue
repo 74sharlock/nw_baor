@@ -4,7 +4,7 @@
             <div class="item" v-for="item in list">
                 <div class="block">
                     <div class="member">
-                        <span v-if="!item.modify">{{memberResolve(item.member)}}</span>
+                        <span v-if="!item.modify"><i class="avatar" :style="{backgroundImage:'url(' + $avatar(memberResolve(item.member).avatar) + ')'}" :title="memberResolve(item.member).name"></i></span>
                         <div v-else class="form-group">
                             <select v-model="item.member">
                                 <option v-for="m in member" :value="$index">{{m.name}}</option>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="spend">
                         <span v-if="!item.modify">
-                            <em class="title">{{item.spend > 0 ? '支出' : '收入'}}了</em>
+                            <em class="title">{{item.spend | incomeTitleFormat}}了</em>
                             <em class="price">{{$abs(item.spend) | currency '¥'}}</em>
                         </span>
                         <div v-else class="form-group">
@@ -87,7 +87,7 @@
                 padding-right: 30px;
                 > .block {
                     width: 100%;
-                    height: 228px;
+                    height: 250px;
                     border: 1px solid #dfdfdf;
                     .boxShadowForBlock;
                     word-break: break-all;
@@ -98,6 +98,22 @@
                         font-size: 20px;
                         text-align: center;
                         padding: 40px 0 10px 0;
+                        span:first-child {
+                            display: flex;
+                            width: 100%;
+                            justify-content: center;
+                            align-items: center;
+                            .avatar {
+                                display: block;
+                                width: 64px;
+                                height: 64px;
+                                border-radius: 32px;
+                                background: no-repeat center;
+                                background-size: cover;
+                                border: 2px solid cornsilk;
+                                .boxShadowForBlock(.5);
+                            }
+                        }
                     }
                     .cat {
                         color: #999;
@@ -217,16 +233,30 @@
             btn
         },
         methods: {
+            validate(data){
+                if(isNaN(data.spend)){
+                    this.$dialog.show({
+                        type: 'error',
+                        buttons: ['确定'],
+                        title: '错误',
+                        message: '花费或者收入必须是一个数字.'
+                    });
+                    return false;
+                }
+                return true;
+            },
             catResolve(index){
                 return cat[index];
             },
             memberResolve(index){
-                return member[index].name;
+                return member[index];
             },
             save(index){
-                if(this.list[index].modify){
-                    this.list[index].modify = false;
-                    this.saveData();
+                if(this.validate(this.list[index])){
+                    if(this.list[index].modify){
+                        this.list[index].modify = false;
+                        this.saveData();
+                    }
                 }
             },
             saveData(){
@@ -242,15 +272,17 @@
                 ws.end();
             },
             add(){
-                this.list.push(this.newData);
-                this.newData = {
-                    member: 0,
-                    category: 0,
-                    spend: null,
-                    note: '',
-                    modify: false
-                };
-                this.saveData();
+                if(this.validate(this.newData)){
+                    this.list.push(this.newData);
+                    this.newData = {
+                        member: 0,
+                        category: 0,
+                        spend: null,
+                        note: '',
+                        modify: false
+                    };
+                    this.saveData();
+                }
             },
             update(index){
                 if(!this.list[index].modify){

@@ -1,7 +1,7 @@
 <template>
     <div class="today-outlay">
         <div v-if="total" class="hasData">
-            <span class="action">{{total > 0 ? '支出': '收入'}}了</span>
+            <span class="action">{{total | incomeTitleFormat}}了</span>
             <span class="price">{{$abs(total) | currency '¥'}}</span>
         </div>
         <span v-if="!total" class="no-data">无消费</span>
@@ -46,9 +46,9 @@
 
     export default {
         props:['date'],
-        data () {
-            return {
-                total: this.$getTotal(outlay[this.date.timeStamp], 'spend')
+        computed:{
+            total(){
+                return this.$getTotal(outlay[this.date.timeStamp], 'spend');
             }
         }
     }

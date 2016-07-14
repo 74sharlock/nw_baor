@@ -1,18 +1,12 @@
 <template>
-    <div class="container">
-        <calendar :item-component="$options.components.todayOutlay" @item-click="go" :data-month-handler="dataMonthHandler"></calendar>
+    <div class="page">
+        <calendar :item-component="$options.components.todayOutlay" :month-component="$options.components.monthOutlay" @item-click="go"></calendar>
     </div>
 </template>
-<style lang="less" rel="stylesheet/less" scoped>
-    .container {
-        width: 100%;
-        height: 100%;
-    }
-</style>
 <script type="text/babel">
     import calendar from '../calendar/'
     import todayOutlay from '../today-outlay'
-    import outlay from 'data/outlay.json'
+    import monthOutlay from '../month-outlay'
 
     export default {
         data () {
@@ -22,20 +16,12 @@
         methods:{
             go(date){
                 this.$router.go(`/detail/${new Date(date).getTime()}`);
-            },
-            dataMonthHandler(start, end){
-                let arr = [], total = 0;
-                Object.keys(outlay).forEach((key)=>{
-                    key = Number(key);
-                    !(key < start || key > end) && arr.push(this.$getTotal(outlay[key], 'spend'));
-                });
-                total = this.$getTotal(arr);
-                return `<span style="font-size: 24px;padding: 0 10px;">{ ${total > 0 ? '支出': '收入'}了<em style="color: crimson;">${this.$abs(total)}</em> }</span>`;
             }
         },
         components: {
             calendar,
-            todayOutlay
+            todayOutlay,
+            monthOutlay
         }
     }
 </script>

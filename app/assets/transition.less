@@ -1,0 +1,10 @@
+.expand-transition {
+  transform: translate3D(0, 0, 0);
+  opacity: 1;
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.expand-enter, .expand-leave {
+  transform: translate3D(-80px, 0, 0);
+  opacity: 0;
+}

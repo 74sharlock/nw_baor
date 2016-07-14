@@ -2,11 +2,14 @@
     <div class="calendar">
         <slot name="header">
             <div class="header">
-                <div class="month">{{dater.year}}年{{dater.month}}月<span v-if="dataMonthHandler()">{{{dataMonthHandler(firstDayOfMonth, LastDayOfMonth)}}}</span></div>
+                <div class="month">
+                    {{dater.year}}年{{dater.month}}月
+                    <component :is="monthComponent" :date="item" v-if="monthComponent" :start="firstDayOfMonth" :end="LastDayOfMonth"></component>
+                </div>
                 <div class="handle">
-                    <a class="btn" @click="showCalendar(handleMonth('prev', n(dater.year), n(dater.month)))"><</a>
+                    <a class="btn" @click="showCalendar(handleMonth('prev', n(dater.year), n(dater.month)))">&lt;</a>
                     <a class="btn" @click="showCalendar(today)">今天</a>
-                    <a class="btn" @click="showCalendar(handleMonth('next', n(dater.year), n(dater.month)))">></a>
+                    <a class="btn" @click="showCalendar(handleMonth('next', n(dater.year), n(dater.month)))">&gt;</a>
                 </div>
             </div>
         </slot>
@@ -17,8 +20,7 @@
             <div class="item {{item.state}} {{item.name}}" v-for="item in dater.getMonthPanel()" track-by="$index" data-value="{{item.value}}" @click="$dispatch('item-click', item.value)">
                 <div class="body">
                     <div class="date">{{item.day}}日</div>
-                    <div class="data-item" v-if="dataHandler(item.value)">{{dataHandler(item.value)}}</div>
-                    <component :is="itemComponent" :date="item"></component>
+                    <component :is="itemComponent" :date="item" v-if="itemComponent"></component>
                 </div>
             </div>
         </div>
@@ -38,6 +40,8 @@
             .month {
                 font-size: 32px;
                 padding: 20px;
+                display: flex;
+                align-items: center;
             }
             .handle {
                 display: flex;
@@ -116,15 +120,8 @@
     export default {
         props:{
             data: {},
-            dataHandler: {
-                type: Function,
-                default: noop
-            },
-            dataMonthHandler: {
-                type: Function,
-                default: noop
-            },
-            itemComponent: {}
+            itemComponent: {},
+            monthComponent: {}
         },
         data () {
             return {

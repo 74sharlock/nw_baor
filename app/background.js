@@ -11,29 +11,31 @@ let mainWindow
 
 app.on('ready', () => {
   //1300*1120
-  mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
-    frame: false
-  })
 
-  const wc = mainWindow.webContents;
+  if (process.env.NODE_ENV !== 'production') {
+    mainWindow = new BrowserWindow({
+      width: 1024,
+      height: 768,
+      frame: false
+    });
+    mainWindow.openDevTools()
+  } else {
+    mainWindow = new BrowserWindow({
+      width: 1300,
+      height: 1120,
+      frame: false
+    })
+  }
 
   ipc.call(ipcMain, {app, mainWindow});
 
   // Load the HTML file directly from the webpack dev server if
   // hot reload is enabled, otherwise load the local file.
   const mainURL = process.env.HOT
-    ? `http://localhost:${process.env.PORT}/`
-    : 'file://' + path.join(__dirname, 'index.html')
+      ? `http://localhost:${process.env.PORT}/`
+      : 'file://' + path.join(__dirname, 'index.html')
 
   mainWindow.loadURL(mainURL)
-
-  /*if (process.env.NODE_ENV !== 'production') {
-    mainWindow.openDevTools()
-  }*/
-
-  mainWindow.openDevTools()
 
 
 

@@ -1,8 +1,8 @@
 <template>
     <div id="app">
-        <common-header></common-header>
+        <common-header :show-menu.sync="showMenu"></common-header>
         <div class="container">
-            <x-aside class="no-drag"></x-aside>
+            <x-aside class="no-drag" v-show="showMenu" transition="expand"></x-aside>
             <router-view class="animated half" transition="fadeSlide" transition-mode="out-in"></router-view>
         </div>
     </div>
@@ -13,6 +13,11 @@
     import CommonHeader from 'components/header'
 
     export default {
+        data(){
+            return {
+                showMenu: true
+            }
+        },
         components: {
             xAside,
             CommonHeader
@@ -25,6 +30,7 @@
     @import './node_modules/normalize.css/normalize.css';
     @import './node_modules/font-awesome/less/font-awesome.less';
     @import 'assets/var';
+    @import 'assets/transition';
 
     html {
         font-size: 10px;
@@ -67,10 +73,18 @@
             border-radius: 4px;
             margin: 0;
             -webkit-appearance:none;
-            background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+            background: url("./assets/arrow.png") no-repeat scroll right center transparent;
             outline: none;
             font-size: 14px;
         }
+    }
+
+    input.form-control {
+        &:extend(.form-group input);
+    }
+
+    select.form-control {
+        &:extend(.form-group select);
     }
 
     #app {
@@ -79,7 +93,6 @@
         display: flex;
         width: 100%;
         flex-direction: column;
-        align-items: stretch;
         * {
             box-sizing: border-box;
         }
@@ -87,7 +100,13 @@
             display: flex;
             height: 100%;
             align-items: stretch;
-            padding-bottom: 30px;
+            //padding-bottom: @containerPb;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .page {
+            position: relative;
+            z-index: 2;
         }
     }
 

@@ -26,7 +26,8 @@ module.exports = {
       app: path.resolve(__dirname, '../app'),
         assets: path.resolve(__dirname, '../app/assets'),
         components: path.resolve(__dirname, '../app/components'),
-        data: path.resolve(__dirname, '../data')
+        data: path.resolve(__dirname, '../data'),
+        avatar: path.resolve(__dirname, '../app/avatar')
     }
   },
   resolveLoader: {
