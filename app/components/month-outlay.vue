@@ -1,5 +1,5 @@
 <template>
-    <kbd>{ {{total | incomeTitleFormat }}了 <em>{{$abs(total) | currency '¥'}} </em> }</kbd>
+    <kbd>{ {{total | incomeTitleFormat }}了 <em>{{$encodeFen($abs(total)) | currency '¥'}} </em> }</kbd>
 </template>
 <style lang="less" rel="stylesheet/less" scoped>
     kbd {

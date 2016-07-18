@@ -2,62 +2,68 @@
   "1468252800000": [
     {
       "member": 0,
-      "category": 0,
-      "spend": 12.5,
+      "category": 1,
+      "spend": 1250,
       "note": ""
     },
     {
       "member": 0,
-      "category": 2,
-      "spend": 22,
-      "note": ""
-    },
-    {
-      "member": 1,
-      "category": 6,
-      "spend": 78,
+      "category": 1,
+      "spend": 2200,
       "note": ""
     },
     {
       "member": 1,
       "category": 0,
-      "spend": 12.5,
-      "note": ""
-    },
-    {
-      "member": 0,
-      "category": 2,
-      "spend": 22,
-      "note": ""
-    },
-    {
-      "member": 1,
-      "category": 6,
-      "spend": 78,
+      "spend": 7800,
       "note": ""
     },
     {
       "member": 1,
       "category": 0,
-      "spend": 12.5,
+      "spend": 1250,
+      "note": ""
+    },
+    {
+      "member": 0,
+      "category": 1,
+      "spend": 2200,
+      "note": ""
+    },
+    {
+      "member": 1,
+      "category": 6,
+      "spend": 7800,
+      "note": ""
+    },
+    {
+      "member": 1,
+      "category": 0,
+      "spend": 1250,
       "note": ""
     },
     {
       "member": 1,
       "category": 2,
-      "spend": 22,
+      "spend": 2200,
       "note": ""
     },
     {
       "member": 0,
-      "category": 6,
-      "spend": "1888",
+      "category": 9,
+      "spend": "188800",
       "note": "212121"
     },
     {
       "member": 0,
       "category": 12,
-      "spend": "-20",
+      "spend": "-2000",
+      "note": ""
+    },
+    {
+      "member": 0,
+      "category": 1,
+      "spend": 1500,
       "note": ""
     }
   ],
@@ -65,13 +71,13 @@
     {
       "member": 0,
       "category": 1,
-      "spend": "6.2",
+      "spend": "620",
       "note": "早餐"
     },
     {
       "member": 0,
       "category": 1,
-      "spend": "15",
+      "spend": "1500",
       "note": "午饭"
     }
   ]

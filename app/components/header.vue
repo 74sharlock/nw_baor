@@ -6,14 +6,17 @@
             <span class="plus" @click="maxWin"><icon name="plus"></icon></span>
         </div>
 
-        <div v-if="$route.pageData.modelName === 'home'" class="no-drag dateDisplay">
+        <div v-if="showBtn" class="no-drag dateDisplay">
             <btn-group>
                 <btn>年</btn>
                 <btn>月</btn>
             </btn-group>
         </div>
-        <div class="backBtn no-drag" v-show="$route.pageData.needBack" @click="resolveBack"><btn>返回</btn></div>
-        <div class="toggleBtn no-drag" v-show="$route.pageData.needMenu" :class="{active: showMenu}" @click="showMenu = !showMenu">
+        <div v-if="showTitle" class="titleDisplay">
+            {{dateFormat(n($route.params.date), 'yyyy年mm月dd日')}}
+        </div>
+        <!--<div class="backBtn no-drag" v-show="$route.pageData.needBack" @click="resolveBack"><btn>返回</btn></div>-->
+        <div class="toggleBtn no-drag" :class="{active: showMenu}" @click="showMenu = !showMenu">
             <icon name="bars"></icon>
         </div>
     </header>
@@ -42,6 +45,9 @@
                 background-color: @asideBg;
                 box-shadow: 1px 1px 5px rgba(0, 0, 0, .5) inset;
             }
+        }
+        .titleDisplay {
+            font-size: 20px;
         }
         .handle {
             display: flex;
@@ -90,6 +96,7 @@
     import icon from 'components/icon'
     import btn from 'components/btn'
     import btnGroup from 'components/btn-group'
+    import dateFormat from 'dateformat'
 
     export default {
         props:{
@@ -97,6 +104,14 @@
                 type:Boolean,
                 twoWay: true,
                 default: false
+            }
+        },
+        computed:{
+            showBtn(){
+                return this.$route.pageData.modelName === 'home' && this.$route.path.indexOf('/detail') < 0;
+            },
+            showTitle(){
+                return this.$route.pageData.modelName === 'home' && this.$route.path.indexOf('/detail') === 0;
             }
         },
         methods:{
@@ -111,12 +126,19 @@
             },
             resolveBack(){
                 this.$router.replace(this.$route.pageData.backTo || '/');
+            },
+            dateFormat,
+            n(a){
+                return Number(a);
             }
         },
         components: {
             icon,
             btn,
             btnGroup
+        },
+        ready(){
+            console.log(this.$route.path);
         }
     }
 </script>

@@ -4,6 +4,10 @@ export default {
         
         vue.prototype.$abs = (num) => Math.abs(Number(num));
         
+        vue.prototype.$decodeFen = (num) => num * 100;
+        
+        vue.prototype.$encodeFen = (num) => num / 100;
+        
         vue.prototype.$getTotal = function (arr, key) {
             if(arr && arr.length){
                 return arr.reduce((x, y) => {

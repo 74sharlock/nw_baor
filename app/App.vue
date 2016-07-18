@@ -3,7 +3,7 @@
         <common-header :show-menu.sync="showMenu"></common-header>
         <div class="container">
             <x-aside class="no-drag" v-show="showMenu" transition="expand"></x-aside>
-            <router-view class="animated half" transition="fadeSlide" transition-mode="out-in"></router-view>
+            <router-view class="animated half" transition="fadeSlide" transition-mode="out-in" :class="{showMenu: showMenu}"></router-view>
         </div>
     </div>
 </template>
@@ -107,6 +107,7 @@
         .page {
             position: relative;
             z-index: 2;
+            width: 100%;
         }
     }
 
@@ -202,6 +203,21 @@
 
     ::-webkit-scrollbar-thumb:window-inactive {
         background: rgba(0, 231, 255, .4);
+    }
+
+    .ui.tips {
+        display: inline-block;
+        position: relative;
+        &.underline {
+            text-decoration: underline;
+        }
+        &.pointer {
+            cursor: pointer;
+        }
+        &::before {
+            position: absolute;
+            content: '';
+        }
     }
 
 

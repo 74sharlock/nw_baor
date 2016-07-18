@@ -6,6 +6,7 @@
   "main": "background.js",
   "dependencies": {
     "animate.css": "^3.5.1",
+    "dateformat": "^1.0.12",
     "font-awesome": "^4.6.3",
     "normalize.css": "^4.2.0",
     "vue-router": "^0.7.13"

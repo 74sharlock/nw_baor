@@ -27,7 +27,8 @@ module.exports = {
         assets: path.resolve(__dirname, '../app/assets'),
         components: path.resolve(__dirname, '../app/components'),
         data: path.resolve(__dirname, '../data'),
-        avatar: path.resolve(__dirname, '../app/avatar')
+        avatar: path.resolve(__dirname, '../app/avatar'),
+        vx: path.resolve(__dirname, '../app/vuex')
     }
   },
   resolveLoader: {
@@ -70,13 +71,14 @@ module.exports = {
       {
         test: /\.less$/,
         loader: 'less'
-      },
+      }
+      ,
       {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url',
         query: {
-          limit: 10000,
-          name: path.join(config.build.assetsSubDirectory, '[name].[hash:6].[ext]')
+          limit: 100000000,
+          name: path.join(config.build.assetsSubDirectory, '[name].[ext]')
         }
       }
     ]

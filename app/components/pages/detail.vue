@@ -22,16 +22,16 @@
                     <div class="spend">
                         <span v-if="!item.modify">
                             <em class="title">{{item.spend | incomeTitleFormat}}了</em>
-                            <em class="price">{{$abs(item.spend) | currency '¥'}}</em>
+                            <em class="price">{{$encodeFen($abs(item.spend)) | currency '¥'}}</em>
                         </span>
                         <div v-else class="form-group">
-                            <input type="text" v-model="item.spend">
+                            <input type="text" v-model="item.spend" @keyup.enter="next">
                         </div>
                     </div>
                     <div class="note">
                         <span v-if="!item.modify">{{item.note}}</span>
                         <div v-else class="form-group">
-                            <input type="text" v-model="item.note">
+                            <input type="text" v-model="item.note" @keyup.enter="save($index)" name="note">
                         </div>
                     </div>
                     <div class="control"><i class="fa fa-pencil" @click="update($index)" :class="{modify: item.modify}"></i><i class="fa" :class="{'fa-trash': !item.modify, 'fa-remove': item.modify}" @click="del($index)"></i></div>
@@ -58,12 +58,12 @@
                     </div>
                     <div class="spend">
                         <div class="form-group">
-                            <input type="text" v-model="newData.spend">
+                            <input type="text" v-model="newData.spend" @keyup.enter="newNext">
                         </div>
                     </div>
                     <div class="note">
                         <div class="form-group">
-                            <input type="text" v-model="newData.note">
+                            <input type="text" v-model="newData.note" name="newNote" @keyup.enter="add">
                         </div>
                     </div>
                     <div class="save"><btn @click="add"><icon name="plus"></icon></btn></div>
@@ -89,9 +89,9 @@
                     width: 100%;
                     height: 250px;
                     border: 1px solid #dfdfdf;
+                    border-radius: 4px;
                     .boxShadowForBlock;
                     word-break: break-all;
-                    border-radius: 4px;
                     position: relative;
                     .member {
                         color: @linkColor;
@@ -233,8 +233,14 @@
             btn
         },
         methods: {
+            next(){
+                this.$el.querySelector('[name="note"]').focus();
+            },
+            newNext(){
+                this.$el.querySelector('[name="newNote"]').focus();
+            },
             validate(data){
-                if(isNaN(data.spend)){
+                if(isNaN(Number(data.spend)) || data.spend === null || data.spend === ''){
                     this.$dialog.show({
                         type: 'error',
                         buttons: ['确定'],
@@ -273,6 +279,7 @@
             },
             add(){
                 if(this.validate(this.newData)){
+                    this.newData.spend = this.$decodeFen(this.newData.spend);
                     this.list.push(this.newData);
                     this.newData = {
                         member: 0,

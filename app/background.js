@@ -25,6 +25,7 @@ app.on('ready', () => {
       height: 1120,
       frame: false
     })
+    mainWindow.openDevTools()
   }
 
   ipc.call(ipcMain, {app, mainWindow});

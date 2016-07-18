@@ -2,7 +2,7 @@
     <div class="today-outlay">
         <div v-if="total" class="hasData">
             <span class="action">{{total | incomeTitleFormat}}了</span>
-            <span class="price">{{$abs(total) | currency '¥'}}</span>
+            <span class="price">{{$encodeFen($abs(total)) | currency '¥'}}</span>
         </div>
         <span v-if="!total" class="no-data">无消费</span>
     </div>

@@ -6,13 +6,13 @@
                     <i class="fa fa-pencil" @click="update($index)" v-show="!(cat.modify)"></i>
                     <em v-show="!(cat.modify)">{{cat.name}}</em>
                     <i class="fa fa-remove" @click="del($index)" v-if="!count($index)" v-show="!(cat.modify)"></i>
-                    <input class="form-control" v-model="cat.name" v-show="cat.modify">
+                    <input class="form-control" v-model="cat.name" v-show="cat.modify" @keyup.enter="save($index)">
                     <i class="fa fa-check" @click="save($index)" v-show="cat.modify"></i>
                 </span>
             </div>
             <div class="item add">
                 <span>
-                    <input type="text" class="form-control" v-model="newCat" placeholder="添加新类别">
+                    <input type="text" class="form-control" v-model="newCat" placeholder="添加新类别" @keyup.enter="add(newCat)">
                     <i class="fa fa-plus" @click="add(newCat)"></i>
                 </span>
             </div>
