@@ -8,7 +8,7 @@
                     <div class="count"><span>{{man.count}}</span>笔记录</div>
                     <div class="spend">共支出了<span>{{$encodeFen(man.spend) | currency '¥'}}</span></div>
                     <div class="income">共收入了<span>{{$encodeFen(man.income) | currency '¥'}}</span></div>
-                    <div class="mostSpend">主要花费在<span class="ui tips top" title="{{man.mostSpend.value}}">{{catResolve(man.mostSpend.key)}}</span>[方面</div>
+                    <div class="mostSpend">主要花费在<span class="ui tips top" title="{{man.mostSpend.value}}">{{catResolve(man.mostSpend.key)}}</span>方面</div>
                     <div class="maxSpend">最多的一次支出:<span class="ui tips top" title="{{man.maxSpend.key}}">{{$encodeFen(man.maxSpend.value) | currency '¥'}}</span></div>
                     <div class="maxIncome">最多的一次收入:<span class="ui tips top" title="{{man.maxIncome.key}}">{{$encodeFen(man.maxIncome.value) | currency '¥'}}</span></div>
                 </div>
