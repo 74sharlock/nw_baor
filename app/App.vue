@@ -215,8 +215,56 @@
             cursor: pointer;
         }
         &::before {
+            display: none;
             position: absolute;
             content: '';
+            height: 16px;
+            width: 16px;
+            border-width: 0 0 1px 1px;
+            border-color: rgba(0, 0, 0, 0.1);
+            border-style: solid;
+            z-index: 2;
+        }
+        &::after {
+            display: none;
+            position: absolute;
+            content: attr(data-title);
+            justify-content: center;
+            align-items: center;
+            height: 2.6em;
+            z-index: 3;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        &:hover {
+            &::after {
+                display: flex;
+            }
+            &::before {
+                display: block;
+            }
+        }
+
+        &.top {
+            &::before {
+                transform: rotate(45deg);
+                left: 50%;
+                margin-left: -8px;
+                top: -24px;
+            }
+            &::after {
+                left: -75%;
+                width: 250%;
+                top: ~'calc(-2.6em - 10px)';
+            }
+        }
+
+        &.black {
+            &::before, &::after {
+                background-color: #333;
+            }
         }
     }
 
